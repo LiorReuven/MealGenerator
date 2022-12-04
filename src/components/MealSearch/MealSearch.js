@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import axios from 'axios';
 import {
   Box,
@@ -11,29 +11,71 @@ import {
   Flex,
   FormControl,
   Input,
-  FormLabel,
 } from '@chakra-ui/react';
 
-import { CheckIcon } from '@chakra-ui/icons';
 import SearchCard from './SearchCard';
+import MealSectionDesign from '../MealSectionDesign/MealSectionDesign';
 
 const MealSearch = () => {
-  const [searchValue, setSearchValu] = useState('');
+  const [searchValue, setSearchValue] = useState('');
   const [error, setError] = useState(false);
   const [meals, setMeals] = useState([])
   const [isLoadingData, setIsLoadingData] = useState(false)
+  const [showSearch, setShowSearch] = useState(true)
+  const [chosenMeal, setChosenMeal] = useState({})
+  const [ingredients, setIngredients] = useState([]);
+
+
+  const collectIngredients = (fetchedMeal) => {
+    const array = [];
+    for (let i = 1; i <= 30; i++) {
+      if (fetchedMeal[`strIngredient${i}`]) {
+        array.push(
+          `${fetchedMeal[`strIngredient${i}`]} - ${
+            fetchedMeal[`strMeasure${i}`]
+          }`
+        );
+      } else {
+        break;
+      }
+      setIngredients([...array]);
+      setIsLoadingData(false);
+    }
+  };
+
+
+
+
+  const onClickHandler = (meal) => {
+    setShowSearch(false)
+    setIsLoadingData(true)
+    setChosenMeal({...meal})
+    collectIngredients(meal)
+  }
 
 
   const submitHandler = async(e) => {
     e.preventDefault();
+    if (!searchValue.match(/^[A-Za-z]+$/)) {
+      setError('You may only type letters!(no numbers/special symbols allowed)')
+      return
+    } 
+    setMeals([])
+    setShowSearch(true)
     setIsLoadingData(true)
     try {
       const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`);
-      setMeals([...response.data.meals])
+      if (!response.data.meals) {
+        setError('No matches found')
+      } else {
+        setError(false)
+        setMeals([...response.data.meals])
+      }
     } catch (error) {
       console.log('error', error);
     }
 
+    
     setIsLoadingData(false)
 
   }
@@ -74,6 +116,8 @@ const MealSearch = () => {
               >
                 <FormControl>
                   <Input
+                  required
+                   type='text'
                     variant={'solid'}
                     borderWidth={1}
                     color={'gray.800'}
@@ -81,14 +125,14 @@ const MealSearch = () => {
                       color: 'gray.400',
                     }}
                     borderColor={useColorModeValue('gray.300', 'gray.700')}
-                    required
                     bg={useColorModeValue('gray.200', 'white')}
                     onChange={(e) => {
-                      setSearchValu(e.target.value)
+                      setSearchValue(e.target.value)
                     }}
                   />
                 </FormControl>
                 <Button
+                isLoading={isLoadingData ? true : false}
                   color={useColorModeValue('white', 'black')}
                   bg="orange.400"
                   type="submit"
@@ -101,17 +145,28 @@ const MealSearch = () => {
           textAlign={'center'}
           color={error ? 'red.500' : 'gray.500'}>
           {error
-            ? 'Oh no an error occured! 😢 Please try again later.'
+            ? error
             : "enter the meal's name or a portion of it"}
         </Text>
             </Container>
           </Flex>
         </Stack>
-        {!isLoadingData && meals && meals.map((meal, index) => {
+        {!isLoadingData && meals && showSearch ? meals.map((meal, index) => {
           return (
-            <SearchCard key={index} image={meal.strMealThumb} mealName={meal.strMeal} ></SearchCard>
+            <SearchCard onClickFunc={onClickHandler} key={index} meal={meal} ></SearchCard>
           )
-        }) }
+        }) : !isLoadingData && chosenMeal &&
+        <MealSectionDesign
+          mealTitle={chosenMeal.strMeal}
+          mealImage={chosenMeal.strMealThumb}
+          ingredients={ingredients}
+          origin={chosenMeal.strArea}
+          category={chosenMeal.strCategory}
+          tags={chosenMeal.strTags}
+          instructions={chosenMeal.strInstructions}
+          video={chosenMeal.strYoutube}
+        />
+        }
       </Container>
     </>
   );

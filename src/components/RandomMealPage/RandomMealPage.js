@@ -130,7 +130,7 @@ const MealSection = ({seed, isLoadingData, setIsLoadingData}) => {
       }
     };
 
-    const collectIngredients = (fetchedMeal) => {
+     const collectIngredients = (fetchedMeal) => {
       const array = [];
       for (let i = 1; i <= 30; i++) {
         if (fetchedMeal[`strIngredient${i}`]) {
