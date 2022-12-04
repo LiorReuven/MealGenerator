@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import {
   Box,
   Heading,
@@ -6,9 +7,7 @@ import {
   Text,
   Button,
   Stack,
-  Icon,
   useColorModeValue,
-  createIcon,
   Flex,
   FormControl,
   Input,
@@ -16,16 +15,27 @@ import {
 } from '@chakra-ui/react';
 
 import { CheckIcon } from '@chakra-ui/icons';
+import SearchCard from './SearchCard';
 
 const MealSearch = () => {
   const [searchValue, setSearchValu] = useState('');
   const [error, setError] = useState(false);
+  const [meals, setMeals] = useState([])
+  const [isLoadingData, setIsLoadingData] = useState(false)
 
 
-  const submitHandler = (e) => {
+  const submitHandler = async(e) => {
     e.preventDefault();
-    if (!/^[A-Za-z]+$/.test(searchValue))
-    setError(true);
+    setIsLoadingData(true)
+    try {
+      const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`);
+      setMeals([...response.data.meals])
+    } catch (error) {
+      console.log('error', error);
+    }
+
+    setIsLoadingData(false)
+
   }
 
   return (
@@ -97,6 +107,11 @@ const MealSearch = () => {
             </Container>
           </Flex>
         </Stack>
+        {!isLoadingData && meals && meals.map((meal, index) => {
+          return (
+            <SearchCard key={index} image={meal.strMealThumb} mealName={meal.strMeal} ></SearchCard>
+          )
+        }) }
       </Container>
     </>
   );
