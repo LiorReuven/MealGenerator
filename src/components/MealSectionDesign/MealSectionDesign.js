@@ -29,7 +29,7 @@ const MealSectionDesign = (props) => {
         {props.mealTitle}
       </Heading>
       <Tabs isFitted variant="enclosed">
-        <TabList mb="1em">
+        <TabList  mb="1em">
           <Tab onClick={executeScroll}>Picture & Description</Tab>
           <Tab>Ingredients</Tab>
           <Tab>Instructions</Tab>
@@ -46,9 +46,11 @@ const MealSectionDesign = (props) => {
               width="100%"
             >
               <Image
+              width={['60%', '70%', '70%', '50%']}
+              mr='10px'
+                height='auto'
                 ref={myRef}
                 objectFit="cover"
-                maxW="80%"
                 maxH="80%"
                 src={props.mealImage}
                 alt={props.mealTitle}
@@ -57,7 +59,7 @@ const MealSectionDesign = (props) => {
                 <List spacing="60px">
                   <ListItem
                     color="orange.400"
-                    fontSize="20px"
+                    fontSize={['15px', '15px', '15px', '20px']}
                     fontWeight="bold"
                   >
                     Category:
@@ -71,7 +73,7 @@ const MealSectionDesign = (props) => {
                   </ListItem>
                   <ListItem
                     color="orange.400"
-                    fontSize="20px"
+                    fontSize={['15px', '15px', '15px', '20px']}
                     fontWeight="bold"
                   >
                     Origin:
@@ -85,7 +87,7 @@ const MealSectionDesign = (props) => {
                   </ListItem>
                   <ListItem
                     color="orange.400"
-                    fontSize="20px"
+                    fontSize={['15px', '15px', '15px', '20px']}
                     fontWeight="bold"
                   >
                     Tags:
