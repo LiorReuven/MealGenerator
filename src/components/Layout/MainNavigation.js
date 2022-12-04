@@ -95,7 +95,7 @@ const MenuLinks = ({ isOpen }) => {
             Meal Generator
           </Button>
         </MenuItem>
-        <MenuItem textDecorationLine="none" to="/signup" isLast>
+        <MenuItem textDecorationLine="none" to="/mealsearch" isLast>
           <Button
             colorScheme={'orange'}
             bg={'orange.400'}
