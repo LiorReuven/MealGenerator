@@ -14,3 +14,6 @@ for a live Demo: [Live Demo]('')
 - Mobile support
 
 ## Images
+![mealgenerator1](https://user-images.githubusercontent.com/103745653/212391936-374a05de-53ea-4c7c-86ba-d5d77c94000b.JPG)
+![mealgenerator2](https://user-images.githubusercontent.com/103745653/212391943-32658a91-af6d-4dbe-96ba-a9840bbe7d42.JPG)
+![memorygenerator3](https://user-images.githubusercontent.com/103745653/212391945-7d64cd5b-e109-431a-9d79-dbdc2ee5aaed.JPG)
