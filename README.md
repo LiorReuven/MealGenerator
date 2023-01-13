@@ -10,6 +10,7 @@ for a live Demo: [Live Demo]('')
 - Get a randomized meal including image, recipe, ingridients and video guide
 - Search functionality to search for a meal
 - Chakra-UI
+- Light/Dark Mode
 - Mobile support
 
 ## Images
