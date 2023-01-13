@@ -17,11 +17,10 @@ import {
 } from '@chakra-ui/react';
 
 const MealSectionDesign = (props) => {
-
   const myRef = useRef(null);
   const executeScroll = () => myRef.current.scrollIntoView();
 
-  console.log(props.video)
+  console.log(props.video);
 
   return (
     <>
@@ -29,7 +28,7 @@ const MealSectionDesign = (props) => {
         {props.mealTitle}
       </Heading>
       <Tabs isFitted variant="enclosed">
-        <TabList  mb="1em">
+        <TabList mb="1em">
           <Tab onClick={executeScroll}>Picture & Description</Tab>
           <Tab>Ingredients</Tab>
           <Tab>Instructions</Tab>
@@ -46,9 +45,9 @@ const MealSectionDesign = (props) => {
               width="100%"
             >
               <Image
-              width={['60%', '70%', '70%', '50%']}
-              mr='10px'
-                height='auto'
+                width={['60%', '70%', '70%', '50%']}
+                mr="10px"
+                height="auto"
                 ref={myRef}
                 objectFit="cover"
                 maxH="80%"

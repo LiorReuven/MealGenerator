@@ -9,7 +9,7 @@ import {
   Text,
   Button,
   Stack,
-  useColorModeValue
+  useColorModeValue,
 } from '@chakra-ui/react';
 import Logo from './navComponents/Logo';
 
@@ -20,10 +20,7 @@ const MainNavigation = (props) => {
 
   return (
     <NavBarContainer {...props}>
-      <Logo
-        w="150px"
-        color={useColorModeValue('black', 'white')}
-      />
+      <Logo w="150px" color={useColorModeValue('black', 'white')} />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} />
     </NavBarContainer>

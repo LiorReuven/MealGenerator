@@ -8,14 +8,13 @@ import {
 import React from 'react';
 
 const SearchCard = (props) => {
-
-  
-  console.log(props.meal.strMeal)
-
+  console.log(props.meal.strMeal);
 
   return (
     <Container
-      onClick={() => {props.onClickFunc(props.meal)}}
+      onClick={() => {
+        props.onClickFunc(props.meal);
+      }}
       cursor="pointer"
       _hover={{ bg: 'orange.400' }}
       bg={useColorModeValue('gray.600', 'gray.300')}
