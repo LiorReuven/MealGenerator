@@ -9,7 +9,7 @@ for a live Demo: [Live Demo]('')
 - React-Router
 - API calls
   - axios
-- Get a randomized meal including image, recipe, ingridients and video guide
+- Get a randomized meal including image, instructions, ingridients and video guide
 - Search functionality to search for a meal
 - Chakra-UI
 - Light/Dark Mode
