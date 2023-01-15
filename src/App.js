@@ -12,7 +12,7 @@ function App() {
     <>
       <MainNavigation></MainNavigation>
       <Routes>
-        <Route path="/" element={<RandomMealPage />} />
+        <Route path="MealGenerator" element={<RandomMealPage />} />
         <Route path="mealSearch" element={<MealSearch />} />
       </Routes>
     </>
