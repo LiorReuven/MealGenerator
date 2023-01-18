@@ -1,6 +1,6 @@
 # Meal Generator App - created with ReactJs
 
-App designed to generate randomly,or specifically search a meal for you, with details,pictures,ingriedients,instructions and a video guide(if available)
+App designed to generate randomly,or specifically search a meal for you, with details,pictures,ingredients,instructions and a video guide(if available)
 
 for a Live Demo: [Live Demo](https://meal-generator-lr.netlify.app)
 
